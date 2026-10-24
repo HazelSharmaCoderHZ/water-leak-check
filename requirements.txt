@@ -6,4 +6,6 @@ joblib
 plotly
 folium
 streamlit-folium
-groq
+google-genai
+python-dotenv
+imbalanced-learn
