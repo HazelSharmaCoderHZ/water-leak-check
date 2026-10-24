@@ -19,7 +19,7 @@ This project consists of:
 *  **Zone Map & Geo Analysis** – Interactive GIS map showing leak locations, active/dead pipes, and zone-wise analytics.
 *  **Batch Prediction** – Upload a CSV dataset for bulk leak detection with downloadable results.
 *  **Analytics & Insights** – Feature importance, model comparisons, and system insights.
-*  **AI Assistant (Groq LLaMA Model)** – Ask AI for leak trends, maintenance insights, and generate plots dynamically.
+*  **AI Assistant (Google Gemini)** – Ask AI for leak trends, maintenance insights, and generate plots dynamically.
 *  **About Page** – Quick overview of the system.
 
 ---
@@ -29,7 +29,7 @@ This project consists of:
 * **Frontend**: [Streamlit](https://streamlit.io/)
 * **Visualization**: Plotly, Folium (maps), Streamlit-Folium
 * **Machine Learning**: Scikit-learn (Random Forest, Decision Tree, Logistic Regression, SVM)
-* **AI Assistant**: Groq API (LLaMA models)
+* **AI Assistant**: Google Gemini API
 * **Data Handling**: Pandas, NumPy
 
 ---
@@ -78,6 +78,26 @@ venv\Scripts\activate        # On Windows
 pip install -r requirements.txt
 ```
 
+### Generate Model Files
+
+Before starting the dashboard, train and save the four model pipelines:
+
+```bat
+python ml_model\train_models.py
+```
+
+Run this command from the project root. It creates the `.pkl` files loaded by the dashboard.
+
+### Run Streamlit App
+
+From the project root:
+
+```bat
+streamlit run frontend\app.py
+```
+
+The dashboard works without Gemini credentials. To use the AI Assistant, copy `.env.example` to `.env` and set `GEMINI_API_KEY` to your Google AI Studio API key. `AI_MODEL` is optional and defaults to `gemini-2.5-flash`.
+
 ###  Run ML Notebook (Optional - Training Models)
 
 Open `water_leak_detection.ipynb` in Jupyter Notebook / JupyterLab:
@@ -87,12 +107,6 @@ jupyter notebook water_leak_detection.ipynb
 ```
 
 This will allow you to retrain and export `.pkl` models.
-
-### Run Streamlit App
-
-```bash
-streamlit run app.py
-```
 
 The app will open in your browser at:
 
